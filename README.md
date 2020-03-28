@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリ名
+Fav Link
 
-Things you may want to cover:
+## サイト概要
+お気に入りや好きなものを共有して繋がろう、レビューしあおう
 
-* Ruby version
+### サイトテーマ
+アニメ、映画等々のレビュー
 
-* System dependencies
+### テーマを選んだ理由
+自身のお気に入りといったものを共有し合う、またレビューして様々な意見を知るのも面白いかもしれないと考えたから
 
-* Configuration
+### ターゲットユーザ
+20代から30代
 
-* Database creation
+### 主な利用シーン
+映画やアニメ鑑賞後、好き、お気に入り作品に語りたい時などに
 
-* Database initialization
+## 設計書
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 機能一覧
+https://docs.google.com/spreadsheets/d/10LV4dL9a_lNkampJYrtWYwVRFyzjSTNO5ThxdEnH8y0/edit?usp=sharing
