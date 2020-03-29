@@ -60,6 +60,7 @@ gem 'paranoia'
 gem 'cancancan'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem 'font-awesome-sass'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
