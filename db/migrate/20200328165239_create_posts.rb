@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.text :title
       t.text :content
       t.float :rate
-      t.text :post_image_id
+      t.text :image_id
       t.datetime :deleted_at
       t.timestamps
     end

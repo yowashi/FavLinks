@@ -1,19 +1,22 @@
 class PostsController < ApplicationController
+
   def top
   end
 
   def index
-  	@post = Post.all
+  	@posts = Post.all
   	@category = Category.all
   end
 
   def new
   	@post = Post.new
+    @category = Category.all
   end
 
   def create
   	post = Post.new(post_params)
-  	post.save
+    post.user_id = current_user.id
+  	post.save!
   	redirect_to posts_path
   end
 
@@ -23,6 +26,7 @@ class PostsController < ApplicationController
 
   def edit
   	@post = Post.find(params[:id])
+    @category = Category.all
   end
 
   def update
@@ -39,6 +43,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-  	params.require(:post).permit(:title,:content,:rate,:post_image,:category_id)
+  	params.require(:post).permit(:title,:content,:rate,:image_id,:category_id,:user_id)
   end
 end
