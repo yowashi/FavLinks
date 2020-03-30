@@ -1,0 +1,19 @@
+<%= javascript_include_tag 'jquery.raty' %>
+<div class="content">
+	<div class="profile">
+		<%= @post.title %>
+		<div id="star-rate-<%= @post.id %>"></div>
+<script>
+	$('#star-rate-<%= @post.id %>').raty({
+		size: 36,
+		starOff:  '<%= asset_path('star-off.png') %>',
+		starOn : '<%= asset_path('star-on.png') %>',
+		starHalf: '<%= asset_path('star-half.png') %>',
+		half: true,
+		readOnly: true,
+		score: <%= @post.rate %>,
+	});
+</script>
+<%= @post.content %>
+
+<%= link_to '編集',edit_post_path(@post) %>

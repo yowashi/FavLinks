@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_170715) do
     t.text "title"
     t.text "content"
     t.float "rate"
-    t.text "post_image_id"
+    t.text "image_id"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_170715) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.text "user_image_id"
+    t.text "image_id"
     t.text "introduction"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
