@@ -1,9 +1,12 @@
 <%= javascript_include_tag 'jquery.raty' %>
 <%= link_to 'カテゴリー',categories_path %>
-
+<% if user_signed_in? %>
 <%= link_to '新規投稿',new_post_path %>
-
+<% end %>
 <% @posts.each do |post| %>
+	<div>
+		<%= attachment_image_tag(post, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+	</div>
 	<div>
 		title
 	</div>
@@ -28,3 +31,12 @@
 </div>
 	<%= post.content %>
 <% end %>
+
+<div>
+	<div>
+		カテゴリー
+	</div>
+	<% @categories.each do |category| %>
+	<%= link_to category.name, posts_path(category_id: category.id), category_id: category.id %>
+	<% end %>
+</div>

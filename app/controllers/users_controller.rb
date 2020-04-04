@@ -14,13 +14,13 @@ class UsersController < ApplicationController
 
 	def update
 		user = User.find(params[:id])
-		user.update(user.params)
+		user.update(user_params)
 		redirect_to user
 	end
 
 	private
 	def user_params
-		params.require(:user).permit(:name,:user_image,:introduction)
+		params.require(:user).permit(:name,:image,:introduction)
 	end
 
 	def correct_user
