@@ -1,11 +1,18 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new,:create,:edit,:update,:destroy]
 
   def top
   end
 
   def index
-  	@posts = Post.all
-  	@category = Category.all
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @posts = @category.posts.all.reverse_order
+      @categories = Category.all
+    else
+  	 @posts = Post.all.reverse_order
+  	 @categories = Category.all
+    end
   end
 
   def new
@@ -22,6 +29,8 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def edit
@@ -43,6 +52,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-  	params.require(:post).permit(:title,:content,:rate,:image_id,:category_id,:user_id)
+  	params.require(:post).permit(:title,:content,:rate,:image,:category_id,:user_id)
   end
 end

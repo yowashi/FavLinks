@@ -1,0 +1,9 @@
+<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+
+<%= @user.name %>
+
+<%= @user.introduction %>
+
+<% if user_signed_in? %>
+	<%= link_to 'User編集',edit_user_path(current_user.id) %>
+	<% end %>
