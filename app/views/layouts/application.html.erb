@@ -11,20 +11,24 @@
 
   <body>
 <header>
-  <%= link_to "ロゴ",root_path,class:"header__header-logo" %>
-  <div class="header__header_contents">
-    <% if user_signed_in? %>
-  <%= link_to 'About',users_about_path %> |
-  <%= link_to '投稿一覧',posts_path %> |
-  <%= link_to 'My Page',user_path(current_user) %> |
-  <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
-  <% else %>
-  <%= link_to 'About',users_about_path %> |
-  <%= link_to '投稿一覧',posts_path %> |
-  <%= link_to 'Login',new_user_session_path %> |
-  <%= link_to 'サインイン',new_user_registration_path %>
-  <% end %>
-</div>
+  <div class="header">
+    <%= link_to root_path,class:'header__header-logo' do %>
+    <%= image_tag '/assets/favlinks.png' %>
+    <% end %>
+    <div class="header__header-contents">
+      <% if user_signed_in? %>
+      <%= link_to 'About',users_about_path %> |
+      <%= link_to '投稿一覧',posts_path %> |
+      <%= link_to 'My Page',user_path(current_user) %> |
+      <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
+    <% else %>
+      <%= link_to 'About',users_about_path %> |
+      <%= link_to '投稿一覧',posts_path %> |
+      <%= link_to 'Login',new_user_session_path %> |
+      <%= link_to 'サインイン',new_user_registration_path %>
+    <% end %>
+      </div>
+    </div>
 </header>
     <%= yield %>
   </body>
