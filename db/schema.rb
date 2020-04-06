@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_170715) do
+ActiveRecord::Schema.define(version: 2020_04_01_063814) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -33,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_170715) do
     t.text "title"
     t.text "content"
     t.float "rate"
-    t.text "post_image_id"
+    t.text "image_id"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -57,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_170715) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.text "user_image_id"
+    t.text "image_id"
     t.text "introduction"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
@@ -66,6 +76,8 @@ ActiveRecord::Schema.define(version: 2020_03_28_170715) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
 end

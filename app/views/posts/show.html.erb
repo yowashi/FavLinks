@@ -1,0 +1,43 @@
+<%= javascript_include_tag 'jquery.raty' %>
+<div class="content">
+<%= attachment_image_tag(@post, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+
+	<div class="profile">
+		<%= @post.title %>
+		<div id="star-rate-<%= @post.id %>"></div>
+<script>
+	$('#star-rate-<%= @post.id %>').raty({
+		size: 36,
+		starOff:  '<%= asset_path('star-off.png') %>',
+		starOn : '<%= asset_path('star-on.png') %>',
+		starHalf: '<%= asset_path('star-half.png') %>',
+		half: true,
+		readOnly: true,
+		score: <%= @post.rate %>,
+	});
+</script>
+<%= @post.content %>
+
+<div>
+	<div>
+		コメント
+	</div>
+	<div>
+		<% @comments.each do |comment| %>
+		<%= comment.content %>
+		<%= link_to "削除", post_comment_path(post_id: @post, id: comment.id), method: :delete %>
+		<% end %>
+	</div>
+</div>
+
+<% if user_signed_in? %>
+	<%= link_to '編集',edit_post_path(@post) %><br>
+	<%= link_to '削除',post_path(@post),method: :delete %>
+	<div>
+	<%= form_for [@post, @comment] do |f| %>
+	<%= f.label :コメント %>
+	<%= f.text_area :content %>
+	<%= f.submit 'コメント追加' %>
+	<% end %>
+</div>
+<% end %>

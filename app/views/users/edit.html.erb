@@ -1,0 +1,13 @@
+<%= form_for @user do |user| %>
+
+<%= user.label :image %>
+	<%= user.attachment_field :image %>
+
+	<%= user.label :名前 %>
+	<%= user.text_field :name %>
+
+	<%= user.label :自己紹介欄 %>
+	<%= user.text_area :introduction %>
+
+	<%= user.submit '更新' %>
+	<% end %>
