@@ -1,0 +1,17 @@
+.header {
+	width: 100%;
+	display: flex;
+	background-color: #e0ffff;
+	height: 100px;
+
+	&__header-logo {
+	margin: 20px;
+	line-height: 100px;
+	}
+
+	&__header-contents {
+	line-height: 100px;
+  margin-left: auto;
+  margin-right: 20px;
+	}
+}

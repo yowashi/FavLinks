@@ -12,3 +12,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+Rails.application.config.assets.precompile += %w( jquery.raty.js )
+Rails.application.config.assets.precompile += %w( skippr.min.js )
+Rails.application.config.assets.precompile += %w( skippr.js )
+Rails.application.config.assets.precompile += %w( script.js )
+Rails.application.config.assets.precompile += %w( header.scss )
+Rails.application.config.assets.precompile += %w( post.scss )
