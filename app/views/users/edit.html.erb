@@ -1,13 +1,25 @@
-<%= form_for @user do |user| %>
 
-<%= user.label :image %>
-	<%= user.attachment_field :image %>
+<div class="user__main--edit">
 
+	<%= form_for @user do |user| %>
+
+	<div class="user__main--edit-image">
+		<%= user.label :image %>
+		<%= user.attachment_field :image %>
+	</div>
+
+	<div class="user__main--edit-name">
 	<%= user.label :名前 %>
 	<%= user.text_field :name %>
+	</div>
 
+	<div class="user__main--edit-int">
 	<%= user.label :自己紹介欄 %>
 	<%= user.text_area :introduction %>
+	</div>
 
+	<div class="user__main--edit-btn">
 	<%= user.submit '更新' %>
 	<% end %>
+	</div>
+</div>

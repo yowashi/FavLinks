@@ -4,14 +4,17 @@ class PostsController < ApplicationController
   def top
   end
 
+  PER = 6
   def index
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @posts = @category.posts.all.reverse_order
+      @posts = @category.posts.page(params[:page]).per(PER).reverse_order
       @categories = Category.all
+      @user = current_user
     else
-  	 @posts = Post.all.reverse_order
+  	 @posts = Post.page(params[:page]).per(PER).reverse_order
   	 @categories = Category.all
+     @user = current_user
     end
   end
 
