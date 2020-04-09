@@ -1,52 +1,72 @@
 <%= javascript_include_tag 'jquery.raty' %>
-<%= link_to 'カテゴリー',categories_path %>
-<% if user_signed_in? %>
-<%= link_to '新規投稿',new_post_path %>
-<% end %>
-<<<<<<< HEAD
-
 <div class="post__main">
-	<div class="post__main-contents">
-	<% @posts.each do |post| %>
+	<div class="post__main-user">
+		<% if user_signed_in? %>
+		<div class="post__main-user--image">
+			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+		</div>
+
+		<div class="post__main-user--name">
+		Name:  <%= @user.name %>
+		</div>
+		<br>
+		<div class="post__main-user--introduction">
+			プロフィール:<br>
+			  <%= @user.introduction %>
+		</div>
+		<div class="post__main-user--btn">
+			<%= link_to '編集',edit_user_path(@user) %> |
+
+			<%= link_to '新規投稿',new_post_path %>
+		</div>
+		<% end %>
+	</div>
 	<div class="post__main-content">
-
-		<div class="post__main-content--image">
-			<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
-		</div>
-
-		<div class="post__main-content--title">
-			title:<%= link_to post.title,post_path(post) %>
-		</div>
-
-		<div class="post__main-content--rate">
-			評価
-		<div id="star-rate-<%= post.id %>"></div>
-		<script>
-			$('#star-rate-<%= post.id %>').raty({
-				size: 36,
-				starOff:  '<%= asset_path('star-off.png') %>',
-				starOn : '<%= asset_path('star-on.png') %>',
-				starHalf: '<%= asset_path('star-half.png') %>',
-				half: true,
-				readOnly: true,
-				score: <%= post.rate %>,
-			});
-		</script>
+		<% @posts.each do |post| %>
+		<div class="post__main-content--body">
+				<div class="post__main-content--body_image">
+				<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
 			</div>
 
-		<div class="post__postcontent--content">
-			内容:<%= post.content %>
+			<div class="post__main-content--body_title">
+				title:<%= link_to post.title,post_path(post) %>
+			</div>
+
+			<div class="post__main-content--body_rate">
+				評価
+			<div id="star-rate-<%= post.id %>"></div>
+			<script>
+				$('#star-rate-<%= post.id %>').raty({
+					size: 36,
+					starOff:  '<%= asset_path('star-off.png') %>',
+					starOn : '<%= asset_path('star-on.png') %>',
+					starHalf: '<%= asset_path('star-half.png') %>',
+					half: true,
+					readOnly: true,
+					score: <%= post.rate %>,
+				});
+			</script>
+			</div>
+
+			<div class="post__main-content--body_content">
+				内容:<%= post.content %>
+			</div>
+		</div>
+		<% end %>
+
+		<div class="post__main-content--body_paginate">
+			<%= paginate @posts %>
 		</div>
 	</div>
-	<% end %>
-</div>
 
-	<div class="post__category">
-		<div class="post__category-content">
-		カテゴリー<br>
-	<% @categories.each do |category| %>
-	<%= link_to category.name, posts_path(category_id: category.id), category_id: category.id %><br>
-	<% end %>
+	<div class="post__main-category">
+		<div class="post__main-category--name">
+		カテゴリー
 		</div>
+				<% @categories.each do |category| %>
+		<div class="post__main-category--link">
+			<%= link_to category.name, posts_path(category_id: category.id), category_id: category.id %><br>
+		</div>
+		<% end %>
 	</div>
 </div>
