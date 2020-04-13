@@ -75,6 +75,12 @@
 			<%= link_to category.name, posts_path(category_id: category.id), category_id: category.id %><br>
 		</div>
 		<% end %>
+		<div class="post__main-category--new">
+			<%= form_for @category do |f| %>
+			<%= f.text_field :name %>
+			<%= f.submit '追加' %>
+			<% end %>
+		</div>
 	</div>
 </div>
 
