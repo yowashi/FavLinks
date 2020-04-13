@@ -10,10 +10,105 @@
 	height: auto;
 	}
 
-	&__main-about {
-	width: auto;
+	&__about {
+	width: 500px;
+	margin: 20px 40px;
+	border: solid 1px black;
+	box-shadow: 0px 1px 3px darkmagenta;
+	}
+
+	&__show {
+	background-color: pink;
+	width: 1330px;
 	height: auto;
-	background-color: yellow;
-	margin: 10 30px;
+	display: flex;
+	}
+
+	&__show-1 {
+	background-color: #f0ffff;
+	width: 200px;
+	height: 850px;
+
+		&--image {
+		margin: 0 45px;
+		}
+
+		&--name {
+		margin: 0 10px;
+		}
+
+		&--introduction {
+		margin: 0 10px;
+		}
+
+		&--btn {
+		text-align: center;
+		}
+	}
+
+	&__show-2 {
+	background-color: #e0ffff;
+	width: 465px;
+	height: auto;
+	text-align: center;
+	}
+
+	&__show-post {
+	width: 450px;
+	height: 280px;
+	padding: 10px 80px;
+	}
+
+	&__show-posts--paginate {
+	text-align: center;
+	}
+
+	&__show-3 {
+	background-color: #7fffd4;
+	width: 465px;
+	height: auto;
+	text-align: center;
+	}
+
+	&__show-like {
+	width: 450px;
+	height: 280px;
+	padding: 10px 80px;
+	}
+
+	&__show-4 {
+	background-color: #f0ffff;
+	width: 200px;
+	height: auto;
+	text-align: center;
+
+		&--category_link {
+		padding: 10px;
+		font-size: 20px;
+		}
+	}
+
+	&__main-edit {
+	width: 400px;
+	margin: auto;
+	margin: 30px auto;
+	border: solid 1px black;
+	box-shadow: 0px 1px 1px darkmagenta;
+
+		&--image {
+		margin: 5px;
+		}
+
+		&--name {
+		margin: 5px;
+		}
+
+		&--int {
+		margin: 5px;
+		}
+
+		&--btn {
+		margin: 5px;
+		}
 	}
 }

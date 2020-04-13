@@ -1,5 +1,11 @@
-<%= form_for [@post, @comment] do |f| %>
-	<%= f.label :コメント %>
-	<%= f.text_area :content %>
-	<%= f.submit 'コメント追加' %>
-	<% end %>
+<div class="comment_new">
+	<%= form_for [@post, @comment] do |f| %>
+	<div class="comment_new_content">
+		<%= f.label :コメント %>
+		<%= f.text_area :content %>
+	</div>
+	<div class="comment_new_btn">
+		<%= f.submit 'コメント追加' %>
+		<% end %>
+	</div>
+</div>

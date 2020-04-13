@@ -1,36 +1,47 @@
 <%= javascript_include_tag 'jquery.raty' %>
-<div class="post__main">
-	<%= form_for @post do |f| %>
 
-	<%= f.label :image %>
-	<%= f.attachment_field :image %>
+  <div class="post__new">
+	 <%= form_for @post do |f| %>
 
-	<%= f.label :title %>
-	<%= f.text_field :title %>
+   <h3 class="post__new--image">
+	 <%= f.label :image %>
+	 <%= f.attachment_field :image %>
+  </h3>
 
-	<div id="star">
-    <%= f.label :rate,'評価 ' %>
-    <%= f.hidden_field :rate, id: :review_star %>
+  <h3 class="post__new--title">
+	 <%= f.label :title %>
+	 <%= f.text_field :title %>
+  </h3>
+
+  <h3 class="post__new--rate">
+	 <div id="star">
+      <%= f.label :rate,'評価 ' %>
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+
+    <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'post[rate]',
+      half: true,
+    });
+    </script>
+  </h3>
+
+  <h3 class="post__new--content">
+	 <%= f.label :content %>
+	 <%= f.text_area :content %>
+  </h3>
+
+  <h3 class="post__new--category">
+	 <%= f.label :category %>
+	 <%= f.collection_select :category_id,@category,:id,:name %>
+  </h3>
+  <h3 class="post__new--btn">
+	 <%= f.submit '投稿' %>
+  </h3>
+    <% end %>
   </div>
-
-  <script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'post[rate]',
-    half: true,
-  });
-  </script>
-
-	<%= f.label :content %>
-	<%= f.text_area :content %>
-
-	<%= f.label :category %>
-	<%= f.collection_select :category_id,@category,:id,:name %>
-	<%= f.submit '投稿' %>
-  <% end %>
-</div>
-
-<div>テスト</div>

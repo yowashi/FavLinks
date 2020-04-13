@@ -1,11 +1,105 @@
+<%= javascript_include_tag 'jquery.raty.js' %>
 <%= render "users/error_message", user: @user %>
 
-<%= attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+<div class="user__show">
+	<div class="user__show-1">
+		<% if user_signed_in? %>
+		<div class="user__show-1--image">
+			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+		</div>
+		<%= render 'relationships/follow_button', user: @user %>
+		<div class="user__show-1--name">
+			Name:<%= link_to @user.name, user_path(@user) %>
+		</div>
+		<div class="user__show-1--introduction">
+			プロフィール:<br>
+			<%= @user.introduction %>
+		</div>
+		<div class="user__show-1--follow">
+			フォロー:<%= @user.followings.count %>
+			フォロワー:<%= @user.followers.count %>
+		</div>
+		<% if @user == current_user %>
+		<div class="user__show-1--btn">
+			<%= link_to '編集',edit_user_path(@user) %> |
 
-<%= @user.name %>
+			<%= link_to '新規投稿',new_post_path %>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
 
-<%= @user.introduction %>
+	<div class="user__show-2">
+		<h2>投稿一覧</h2>
+		<div class="user__show-post">
+			<% @posts.each do |post| %>
+			<div class="user__show-posts">
+				<div class="user__show-posts--image">
+					<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
+				</div>
 
-<% if user_signed_in? %>
-	<%= link_to 'User編集',edit_user_path(current_user.id) %>
-	<% end %>
+				<div class="user__show-posts--title">
+					title:<%= link_to post.title,post_path(post) %>
+				</div>
+
+				<div class="user__show-posts--rate">
+					評価
+					<div id="star-rate-<%= post.id %>"></div>
+					<script>
+						$('#star-rate-<%= post.id %>').raty({
+						size: 36,
+						starOff:  '<%= asset_path('star-off.png') %>',
+						starOn : '<%= asset_path('star-on.png') %>',
+						starHalf: '<%= asset_path('star-half.png') %>',
+						half: true,
+						readOnly: true,
+						score: <%= post.rate %>,
+						});
+					</script>
+				</div>
+			</div>
+			<% end %>
+			<div class="user__show-posts--paginate">
+			<%= paginate @posts %>
+		</div>
+		</div>
+	</div>
+
+	<div class="user__show-3">
+		<h2>いいねした投稿</h2>
+		<div class="user__show-like">
+			<% @post.each do |post| %>
+			<div class="user__show-likes">
+			<div class="user__show-like--image">
+					<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
+			</div>
+			<div class="user__show-like--title">
+			title:<%= link_to post.title,post %>
+			</div>
+			<div class="user__show-like--content">
+				<%= post.content %>
+			</div>
+			<div class="user__show-like-user">
+				投稿者:<%= post.user.name %>
+			</div>
+			</div>
+		<% end %>
+		<div class="user__show-like--paginate">
+			<%= paginate @post %>
+		</div>
+	</div>
+	</div>
+
+	<div class="user__show-4">
+		<div class="user__show-4--category">
+			<h2 class="user__show-4--category_name">
+				カテゴリー
+			</h2>
+			<% @categories.each do |category| %>
+			<div class="user__show-4--category_link">
+				<%= link_to category.name, posts_path(category_id: category.id), category_id: category.id %><br>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

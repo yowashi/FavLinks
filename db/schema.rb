@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_063814) do
     t.integer "user_id"
     t.integer "post_id"
     t.string "content"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_063814) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "likes_count"
     t.integer "category_id"
     t.text "title"
     t.text "content"

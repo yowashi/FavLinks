@@ -2,8 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.clearfix::after {
+   content: "";
+   display: block;
+   clear: both;
+}
+
 .post {
 	width: 100%;
+	heigh: auto;
 
 	&__about-visual {
 	background-image: url(/assets/image-1.jpg);
@@ -39,62 +46,168 @@
 	&__main {
 	margin: 0 auto;
 	width: 1330px;
-	background-color: yellow;
-	height: 800px;
+	height: auto;
 	display: flex;
 	}
 
 	&__main-user {
 	width: 200px;
-	height: 800px;
-	background-color: red;
+	height: auto;
+	background-color: #f0ffff;
 
-	&--image {
-	margin: 0 45px;
-	}
+		&--image {
+		margin: 0 45px;
+		}
 
-	&--name {
-	margin: 0 10px;
-	}
+		&--name {
+		margin: 0 10px;
+		}
 
-	&--introduction {
-	margin: 0 10px;
+		&--introduction {
+		margin: 0 10px;
+		}
+
+		&--btn {
+		text-align: center;
 		}
 	}
 
 	&__main-content {
-	background-color: #f0f8ff;
 	width: 930px;
-	height: auto;;
+	height: auto;
+	background-color: #f0f8ff;
 	display: flex;
-	justify-content: center;
 	flex-wrap: wrap;
 
-	&--body {
-	width: 300px;
-	height: auto;
-	padding: 20px;
-	 }
+		&--body {
+		width: 300px;
+		height: 375px;
+		padding: 10px;
+		}
 
-	&--body-paginate {
-	margin: 0 80px;
+		&--body_paginate {
+		margin: 0 auto;
 		}
 	}
 
 	&__main-category {
-	background-color: red;
+	background-color: #f0ffff;
 	width: 200px;
-	height: 800px;
-
-	&--name {
-	font-size: 15px;
-	margin: 10px 60px;
-	}
+	height: auto;
+	text-align: center;
 
 	&--link {
-	margin: 30px 60px;
+	padding: 10px;
+	font-size: 20px;
 	}
 }
+	&__show {
+	background-color: yellow;
+	width: 1330px;
+	height: auto;;
+	margin: 0 auto;
+	display: flex;
+	}
+
+	&__show-1 {
+	background-color: #f0ffff;
+	width: 200px;
+	height: auto;
+	}
+
+	&__show-2 {
+	width: 465px;
+	background-color: #f0f8ff;
+	height: auto;
+
+		&--image {
+		width: 300px;
+		height: 300px;
+		margin: 0 auto;
+		}
+	}
+
+	&__show-3 {
+	background-color: #7fffd4;
+	width: 465px;
+	height: auto;
+
+		&--content {
+		word-break: keep-all;
+		}
+	}
+
+	&__show-4 {
+	background-color: #f0ffff;
+	width: 200px;
+	height: auto;
+	text-align: center;
+
+		&--name {
+		font-size: 24px;
+		}
+
+		&--category_link {
+		margin: 10px;
+		font-size: 20px;
+		}
+	}
+
+	&__edit {
+	width: 400px;
+	margin: auto;
+	margin: 30px auto;
+	border: solid 1px black;
+	box-shadow: 0px 1px 1px darkmagenta;
+
+		&--image {
+		margin: 5px;
+		}
+
+		&--title {
+		margin: 5px;
+		}
+
+		&--rate {
+		margin: 5px;
+		}
+
+		&--content {
+		margin: 5px;
+		}
+
+		&--category {
+		margin: 5px;
+		}
+	}
+
+	&__new {
+	width: 400px;
+	margin: auto;
+	margin: 30px auto;
+	border: solid 1px black;
+	box-shadow: 0px 1px 1px darkmagenta;
+
+		&--image {
+		margin: 5px;
+		}
+
+		&--title {
+		margin: 5px;
+		}
+
+		&--rate {
+		margin: 5px;
+		}
+
+		&--content {
+		margin: 5px;
+		}
+
+		&--category {
+		margin: 5px;
+		}
+	}
 }
 
 
