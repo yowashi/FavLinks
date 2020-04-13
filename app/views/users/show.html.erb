@@ -5,7 +5,7 @@
 	<div class="user__show-1">
 		<% if user_signed_in? %>
 		<div class="user__show-1--image">
-			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "/images/no_image.jpg") %>
 		</div>
 		<%= render 'relationships/follow_button', user: @user %>
 		<div class="user__show-1--name">
@@ -35,7 +35,7 @@
 			<% @posts.each do |post| %>
 			<div class="user__show-posts">
 				<div class="user__show-posts--image">
-					<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
+					<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "/images/no_image.jpg") %>
 				</div>
 
 				<div class="user__show-posts--title">
@@ -71,7 +71,7 @@
 			<% @post.each do |post| %>
 			<div class="user__show-likes">
 			<div class="user__show-like--image">
-					<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
+					<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "/images/no_image.jpg") %>
 			</div>
 			<div class="user__show-like--title">
 			title:<%= link_to post.title,post %>

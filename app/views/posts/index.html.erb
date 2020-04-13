@@ -6,7 +6,7 @@
 	<div class="post__main-user">
 		<% if user_signed_in? %>
 		<div class="post__main-user--image">
-			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "/images/no_image.jpg") %>
 		</div>
 
 		<div class="post__main-user--name">
@@ -36,7 +36,7 @@
 		<% @posts.each do |post| %>
 		<div class="post__main-content--body">
 			<div class="post__main-content--body_image">
-				<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
+				<%= attachment_image_tag(post, :image, :fill, 50, 50, fallback: "/images/no_image.jpg") %>
 			</div>
 
 			<div class="post__main-content--body_title">

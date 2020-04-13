@@ -5,7 +5,7 @@
 	<div class="post__show-1">
 		<% if user_signed_in? %>
 			<div class="post__main-user--image">
-				<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+				<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "/images/no_image.jpg") %>
 			</div>
 			<div class="post__main-user--name">
 				Name:<%= link_to @user.name, user_path(@user) %>
@@ -31,7 +31,7 @@
 	<div class="post__show-2">
 		<div class="post__show-2-content">
 			<div class="post__show-2--image">
-				<%= attachment_image_tag(@post, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+				<%= attachment_image_tag(@post, :image, :fill, 100, 100, fallback: "/images/no_image.jpg") %>
 			</div>
 
 			<% if @user == current_user %>

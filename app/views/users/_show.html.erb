@@ -2,7 +2,7 @@
 <div class="user__side">
 		<% if user_signed_in? %>
 		<div class="user__side--image">
-			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "/images/no_image.jpg") %>
 		</div>
 
 		<div class="user__side--name">
