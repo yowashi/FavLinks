@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :image
   validates :name, presence: true, length:{ maximum: 10}
-  validates :introduction,length:{ maximum: 100}
 
   has_many :posts,dependent: :destroy
   has_many :likes, dependent: :destroy
