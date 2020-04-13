@@ -1,0 +1,28 @@
+
+ .devise__user {
+	width: 400px;
+	margin: auto;
+	margin: 30px auto;
+	border: solid 1px black;
+	box-shadow: 0px 1px 1px darkmagenta;
+
+		&--name{
+		margin: 5px;
+		}
+
+		&--email {
+		margin: 5px;
+		}
+
+		&--password {
+		margin: 5px;
+		}
+
+		&--btn {
+		margin: 5px;
+		}
+
+		&--remember {
+		margin: 5px;
+		}
+	}

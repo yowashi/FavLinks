@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :relationships, only:[:create,:destroy]
   resources :posts do
   	resources :comments, only:[:create,:destroy]
+    resources :likes,only:[:create,:destroy]
   end
-  resources :likes,only:[:create,:destroy]
-  resources :categories, only:[:create,:index]
+  resources :categories, only:[:create,:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

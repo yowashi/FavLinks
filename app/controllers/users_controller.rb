@@ -4,8 +4,12 @@ class UsersController < ApplicationController
 	def about
 	end
 
+	PER = 2
 	def show
 		@user = User.find(params[:id])
+		@post = @user.liked_posts.page(params[:page]).per(PER).reverse_order
+		@posts = @user.posts.page(params[:page]).per(PER).reverse_order
+		@categories = Category.all
 	end
 
 	def edit
@@ -13,9 +17,12 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		user = User.find(params[:id])
-		user.update(user_params)
-		redirect_to user
+		@user = User.find(params[:id])
+		if @user.update(user_params)
+		redirect_to @user,notice: 'ユーザー情報を更新しました'
+		else
+		render 'edit'
+		end
 	end
 
 	private

@@ -1,0 +1,22 @@
+
+<div class="user__side">
+		<% if user_signed_in? %>
+		<div class="user__side--image">
+			<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+		</div>
+
+		<div class="user__side--name">
+		Name:  <%= @user.name %>
+		</div>
+		<br>
+		<div class="user__side--introduction">
+			プロフィール:<br>
+			  <%= @user.introduction %>
+		</div>
+		<div class="user__side--btn">
+			<%= link_to '編集',edit_user_path(@user) %> |
+
+			<%= link_to '新規投稿',new_post_path %>
+		</div>
+		<% end %>
+	</div>

@@ -11,9 +11,12 @@ class PostsController < ApplicationController
       @posts = @category.posts.page(params[:page]).per(PER).reverse_order
       @categories = Category.all
       @user = current_user
+      @post = Post.new
     else
   	 @posts = Post.page(params[:page]).per(PER).reverse_order
-  	 @categories = Category.all
+  	 @post = Post.new
+     @categories = Category.all
+     @category = Category.new
      @user = current_user
     end
   end
@@ -24,16 +27,25 @@ class PostsController < ApplicationController
   end
 
   def create
-  	post = Post.new(post_params)
-    post.user_id = current_user.id
-  	post.save!
-  	redirect_to posts_path
+  	@post = Post.new(post_params)
+    @post.user_id = current_user.id
+  	if @post.save
+      redirect_to post,notice: "投稿しました"
+    else
+      @categories = Category.all
+      @user = current_user
+      @posts = Post.page(params[:page]).per(PER).reverse_order
+      render 'index'
+    end
   end
 
   def show
   	@post = Post.find(params[:id])
+    @user= @post.user
     @comments = @post.comments
     @comment = Comment.new
+    @like = Like.new
+    @categories = Category.all
   end
 
   def edit
@@ -42,9 +54,13 @@ class PostsController < ApplicationController
   end
 
   def update
-  	post = Post.find(params[:id])
-  	post.update(post_params)
-  	redirect_to post_path(post)
+  	@post = Post.find(params[:id])
+  	if @post.update(post_params)
+      redirect_to post_path(post),notice: '更新しました'
+    else
+      @category = Category.all
+      render 'edit'
+    end
   end
 
   def destroy

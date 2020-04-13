@@ -1,43 +1,121 @@
 <%= javascript_include_tag 'jquery.raty' %>
-<div class="content">
-<%= attachment_image_tag(@post, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
 
-	<div class="profile">
-		<%= @post.title %>
-		<div id="star-rate-<%= @post.id %>"></div>
-<script>
-	$('#star-rate-<%= @post.id %>').raty({
-		size: 36,
-		starOff:  '<%= asset_path('star-off.png') %>',
-		starOn : '<%= asset_path('star-on.png') %>',
-		starHalf: '<%= asset_path('star-half.png') %>',
-		half: true,
-		readOnly: true,
-		score: <%= @post.rate %>,
-	});
-</script>
-<%= @post.content %>
+<div class="post__show">
 
-<div>
-	<div>
-		コメント
-	</div>
-	<div>
-		<% @comments.each do |comment| %>
-		<%= comment.content %>
-		<%= link_to "削除", post_comment_path(post_id: @post, id: comment.id), method: :delete %>
+	<div class="post__show-1">
+		<% if user_signed_in? %>
+			<div class="post__main-user--image">
+				<%= attachment_image_tag(@user, :image, :fill, 100,100, fallback: "no_image.jpg") %>
+			</div>
+			<div class="post__main-user--name">
+				Name:<%= link_to @user.name, user_path(@user) %>
+			</div>
+
+			<div class="post__main-user--introduction">
+				プロフィール:<br>
+				<%= @user.introduction %>
+			</div>
+			<div class="user__show-1--follow">
+			フォロー:<%= @user.followings.count %>
+			フォロワー:<%= @user.followers.count %>
+		</div>
+			<% if @user == current_user %>
+			<div class="post__main-user--btn">
+				<%= link_to '編集',edit_user_path(@user) %> |
+				<%= link_to '新規投稿',new_post_path %>
+			</div>
+			<% end %>
 		<% end %>
 	</div>
-</div>
 
-<% if user_signed_in? %>
-	<%= link_to '編集',edit_post_path(@post) %><br>
-	<%= link_to '削除',post_path(@post),method: :delete %>
-	<div>
-	<%= form_for [@post, @comment] do |f| %>
-	<%= f.label :コメント %>
-	<%= f.text_area :content %>
-	<%= f.submit 'コメント追加' %>
-	<% end %>
+	<div class="post__show-2">
+		<div class="post__show-2-content">
+			<div class="post__show-2--image">
+				<%= attachment_image_tag(@post, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+			</div>
+
+			<% if @user == current_user %>
+			<div class="post__show-2--btn1">
+				<%= link_to '編集',edit_post_path(@post) %>|<%= link_to '削除',@post,method: :delete,data: {confirm: "本当に削除してもよろしいですか？"} %>
+			</div>
+			<% end %>
+
+			<% if user_signed_in? %>
+			<div class="post__show-2--btn2">
+				<% if current_user.already_liked?(@post) %>
+				<%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
+				<% else %>
+				<%= button_to 'いいね', post_likes_path(@post) %>
+			<% end %>
+				<h2>いいねしたユーザー</h2>
+				<% @post.liked_users.each do |user| %>
+				<li><%= user.name %></li>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="post__show-3">
+		<div class="post__show-3--title">
+			<h2>Title</h2>
+			<%= @post.title %>
+		</div>
+		<div class="post__show-3--rate">
+			<h2>Rate</h2>
+			<div id="star-rate-<%= @post.id %>"></div>
+			<script>
+				$('#star-rate-<%= @post.id %>').raty({
+				size: 36,
+				starOff:  '<%= asset_path('star-off.png') %>',
+				starOn : '<%= asset_path('star-on.png') %>',
+				starHalf: '<%= asset_path('star-half.png') %>',
+				half: true,
+	 		  readOnly: true,
+				score: <%= @post.rate %>,
+				});
+			</script>
+		</div>
+
+		<div class="post__show-3--content">
+			<h2>Content</h2>
+			<%= @post.content %><br>
+		</div>
+
+		<% if user_signed_in? %>
+
+		<div class="post__show-3--comment-new">
+			<%= render 'comments/new' %>
+		</div>
+		<% end %>
+
+		<div class="post__show-3--comment-index">
+			<h2>コメント一覧</h2>
+			<% @comments.each do |comment| %>
+			<div class="post__show-3--comment">
+			<%= comment.content %>
+			[ユーザー名:<%= comment.user.name %>]
+			<% if user_signed_in? %>
+			<% if @user == comment.user %>
+			<%= link_to "削除", post_comment_path(post_id: @post, id: comment.id), method: :delete,data: {confirm: "本当に削除してもよろしいですか？"} %>
+			<% end %>
+			<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="post__show-4">
+		<div class="post__show-4--category">
+			<div class="post__show-4--category_name">
+				カテゴリー
+			</div>
+			<% @categories.each do |category| %>
+			<div class="post__show-4--category_link">
+				<%= link_to category.name, posts_path(category_id: category.id), category_id: category.id %><br>
+			</div>
+			<% end %>
+		</div>
+	</div>
+
 </div>
-<% end %>
